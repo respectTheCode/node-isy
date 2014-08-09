@@ -1,0 +1,18 @@
+{
+  "name": "isy",
+  "version": "0.0.0",
+  "description": "A wrapper for the ISY REST APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ISY"
+  ],
+  "author": "respectTheCode",
+  "license": "MIT",
+  "dependencies": {
+    "xml2js": "^0.4.4",
+    "async": "^0.9.0"
+  }
+}
