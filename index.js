@@ -6,6 +6,7 @@ var async = require("async");
 
 var ISY = module.exports = function (options) {
 	this._options = options;
+	this._cache = {ints: {}, states: {}, devices: {}, scenes: {}};
 };
 
 ISY.prototype.request = function (path, cb) {
@@ -43,45 +44,5 @@ ISY.prototype.request = function (path, cb) {
 	req.end();
 };
 
-ISY.prototype.getVars = function (type, cb) {
-	var self = this;
-
-	async.auto({
-		definitions: function (cb) {
-			self.request("/rest/vars/definitions/" + type, cb);
-		},
-		values: function (cb) {
-			self.request("/rest/vars/get/" + type, cb);
-		}
-	}, function (err, results) {
-		if (err) {
-			return cb(err);
-		}
-
-		var defs = results.definitions.CList.e;
-		var vals = results.values.vars.var;
-
-		var varsById = {};
-		var vars = {};
-
-		var i = defs.length;
-		while (i--) {
-			varsById[defs[i].$.id] = defs[i].$.name;
-		}
-
-		i = vals.length;
-		while (i--) {
-			vars[varsById[vals[i].$.id]] = vals[i].val[0];
-		}
-
-		cb(null, vars);
-	});
-}
-
-ISY.prototype.getIntegers = function (cb) {
-	this.getVars(1, cb);
-};
-
-ISY.prototype.getStates = function (cb) {
-	this.getVars(2, cb);
-};
+require("./lib/variables")(ISY);
+require("./lib/nodes")(ISY);
