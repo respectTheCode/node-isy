@@ -13,7 +13,7 @@ ISY.prototype.request = function (path, cb) {
 	var req = http.request({
 		host: this._options.host,
 		port: this._options.port || 80,
-		path: path,
+		path: encodeURI(path),
 		auth: this._options.user + ':' + this._options.pass
 	}, function (res) {
 		var data = "";
