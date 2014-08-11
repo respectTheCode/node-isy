@@ -1,16 +1,24 @@
 {
   "name": "isy",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A wrapper for the ISY REST APIs",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/respectTheCode/node-isy.git"
   },
   "keywords": [
     "ISY"
   ],
   "author": "respectTheCode",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/respectTheCode/node-isy/issues"
+  },
+  "homepage": "https://github.com/respectTheCode/node-isy",
   "dependencies": {
     "xml2js": "^0.4.4",
     "async": "^0.9.0"
